@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiRestService } from '../api-rest.service'; /* imparatando el componete de api rest
 para usar el getTopics*/
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -13,14 +13,14 @@ export class HomeComponent implements OnInit {
   
   newTopic = {id:0, title:'', user_id:0};/* CREAR un nuevo tema */
 
-    pages = [{url:'', label:'', active:false}]/* paginacion  URL, LABEL Y ACTIVE (del json)*/
+    pages = [{url:'', label:'', active:false}]/* paginacion  */
 
   tmpTopic = {id:0, title:'', user_id:0}; //editar un tema seleccionado (click)
 
 
   user = { id: 0, username: '', role: '' };
 
-  constructor(private rest: ApiRestService) { }
+  constructor(private rest: ApiRestService, private msj:ToastrService) { }
 
   ngOnInit(): void {//cuando se contrulle 
     this.readTopics();
@@ -43,8 +43,12 @@ export class HomeComponent implements OnInit {
     this.rest.postTopic(this.newTopic).subscribe(
       respuesta =>{
         this.readTopics();
+        this.msj.success("¡Se creo el tema de " + this.newTopic.title+"!");
+      },
+      e =>{
+        this.msj.error("Algo salio mal");
       }
-      /* e=>{} */
+      
     );
   }
 
@@ -56,25 +60,35 @@ export class HomeComponent implements OnInit {
 
   updateTopic(){
     this.rest.putTopic(this.tmpTopic).subscribe(
-      r =>{
+      response =>{
         this.readTopics();
+        this.msj.success("Se actualizo a:  " +this.tmpTopic.title.toString());
+      },
+      r=>{
+        this.msj.error("Algo salio mal");        
       }
-     /*  r=>{
-        //error
-      } */
     );
 
   }
+
+
 
   deleteTopic(){
     this.rest.deleteTopic(this.tmpTopic).subscribe(
       r =>{
         this.readTopics();
+        this.msj.success("Se elimino el tema  :  " + this.tmpTopic.title.toString());
+      },
+      r=>{
+        this.msj.error("Algo salio mal");
       }
-     /*  r=>{
-        //error
-      } */
     );
   }
+
+  cancel(){
+    this.msj.info("Cancelaste la operación ...")
+  }
+
+  
 
 }

@@ -1,0 +1,6 @@
+@import url(../home/home.component.css);
+
+textarea{
+    overflow: scroll;
+    resize:  initial;
+}

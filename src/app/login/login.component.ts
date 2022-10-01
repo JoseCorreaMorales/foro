@@ -18,23 +18,15 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
+   
   entrar(){
-  /*   alert("" + this.user +" " + this.pass); */
+  
     this.rest.login(this.user, this.pass).subscribe(
-      //response => {
-        /* this.entrar.arguments.setUser(response.user);
-        localStorage.setItem('token', response.token);
-        this.router.navigate(['/home']);
-        this.nsg.success('Bienvenido'); */
-        /* guarada r le token de validadacion del login */
-
         response => {
           this.rest.setUser(response.user);
           localStorage.setItem('token', response.token)
           this.router.navigate(['/home']);
-          this.nsg.success("Bienvenido");
-        
+          this.nsg.success("Bienvenido  " + this.user + " 🎉");        
       },
       error => {
           /* alert("error"); */
