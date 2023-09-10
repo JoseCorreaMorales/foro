@@ -19,7 +19,7 @@ table{
     background-color:#C98474;
   }
 
- 
+
 
   .table-striped tbody tr:not(odd) {/* los no pares */
     background-color:#F2D388;
@@ -30,10 +30,10 @@ table{
     background-color: #A7D2CB !important;
   }
 
- 
+
 
   .table-hover tbody tr:hover {
-   
+
   }
 
   .myThead {
@@ -49,7 +49,7 @@ table{
   }
   .bi:hover{
     transition: 0.4s;
-  } 
+  }
 
   .card{
     font-size: 1.1rem;
@@ -59,7 +59,7 @@ table{
 -moz-box-shadow: 3px 5px 8px 6px rgba(242,211,136,1);
   }
 
-  .bi-plus-circle-fill{
+  .bi-plus-circle-fill {
     color: #C98474;
   }
 
@@ -72,10 +72,17 @@ table{
   }
 
 
-  /*                                       modals                       */
+  .navPagination ul li button {
+    background: #874C62;
+    color: #C98474;
+  }
+
+  .navPagination ul li button:hover {
+    background: #C98474;
+    color: #874C62;
+  }
 
   /* .text-bg-primary{
    background-color: #e7dfdd73;
-   
+
   } */
-  
